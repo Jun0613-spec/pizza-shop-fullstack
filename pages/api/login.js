@@ -10,14 +10,14 @@ const handler = (req, res) => {
       res.setHeader(
         "Set-Cookie",
         cookie.serialize("token", process.env.TOKEN, {
-          maxage: 60 * 60,
+          maxAge: 60 * 60,
           sameSite: "strict",
           path: "/",
         })
       );
       res.status(200).json("Succesfull");
     } else {
-      res.stauts(400).json("Wrong Credentials");
+      res.status(400).json("Wrong Credentials!");
     }
   }
 };

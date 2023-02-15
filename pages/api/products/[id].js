@@ -1,5 +1,5 @@
-import dbConnect from "../../../util/mongo.js";
-import Product from "../../../models/Product.js";
+import dbConnect from "../../../util/mongo";
+import Product from "../../../models/Product";
 
 export default async function handler(req, res) {
   const {
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   }
 
   if (method === "PUT") {
-    if (!token || token !== process.env.TOKEN) {
+    if (!token || token !== process.env.Token) {
       return res.status(401).json("Not authenticated!");
     }
     try {
@@ -35,11 +35,11 @@ export default async function handler(req, res) {
   }
 
   if (method === "DELETE") {
-    if (!token || token !== process.env.TOKEN) {
+    if (!token || token !== process.env.Token) {
       return res.status(401).json("Not authenticated!");
     }
     try {
-      const product = await Product.findByIdAndDelete(id);
+      await Product.findByIdAndDelete(id);
       res.status(200).json("The product has been deleted!");
     } catch (err) {
       res.status(500).json(err);
