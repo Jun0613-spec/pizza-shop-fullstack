@@ -7,6 +7,7 @@ import PizzaList from "../components/PizzaList";
 import styles from "../styles/Home.module.css";
 import dbConnect from "../util/mongo";
 import axios from "axios";
+import Product from "../models/Product";
 
 export default function Home({ pizzaList, admin }) {
   const [close, setClose] = useState(true);
@@ -35,10 +36,10 @@ export const getServerSideProps = async (ctx) => {
 
   await dbConnect();
 
-  const res = await axios.get("http://localhost:3000/api/products");
+  const res = await Product.find();
   return {
     props: {
-      pizzaList: res.data,
+      pizzaList: JSON.parse(JSON.stringify(res)),
       admin,
     },
   };
