@@ -6,7 +6,6 @@ import Featured from "../components/Featured";
 import PizzaList from "../components/PizzaList";
 import styles from "../styles/Home.module.css";
 import dbConnect from "../util/mongo";
-import axios from "axios";
 import Product from "../models/Product";
 
 export default function Home({ pizzaList, admin }) {
